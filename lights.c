@@ -269,7 +269,7 @@ set_speaker_light_locked(struct light_device_t* dev,
             break;
     }
 
-    colorRGB = state->color;
+        colorRGB = state->color;
 
 #if 0
     LOGD("set_speaker_light_locked colorRGB=%08X, onMS=%d, offMS=%d\n",
@@ -338,6 +338,9 @@ handle_speaker_battery_locked(struct light_device_t* dev)
 {
     if (is_lit(&g_battery)) {
         set_speaker_light_locked(dev, &g_battery);
+      if (is_lit(&g_notification)) {
+		set_speaker_light_locked(dev, &g_notification);
+	}
     } else {
         set_speaker_light_locked(dev, &g_notification);
     }
